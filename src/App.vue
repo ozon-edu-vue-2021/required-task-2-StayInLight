@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <directory-item
+      :node="treeData"
+      :path="treeData.name"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import treeData from '../public/static/node_modules.json';
+import DirectoryItem from './components/DirectoryItem.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      treeData,
+    };
+  },
   components: {
-    HelloWorld,
+    DirectoryItem,
+  },
   },
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  max-width: 1200px;
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border: 1px solid #2c3e50;
+  border-radius: 6px;
+  padding: 8px;
 }
 </style>
