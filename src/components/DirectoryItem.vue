@@ -3,9 +3,9 @@
     <div
       class="node__content"
       @click="toggleChildren"
+      v-if="node.type === 'directory'"
     >
       <button
-        v-if="node.type === 'directory'"
         class="button"
       >
         <font-awesome-icon :icon="getIconMap.angle" />
@@ -16,12 +16,12 @@
       {{ node.name }}
     </div>
     <link-item
-      v-if="node.type === 'link'"
+      v-else-if="node.type === 'link'"
       :name="node.name"
       :path="path"
     />
     <file-item
-      v-else-if="node.type === 'file'"
+      v-else
       :name="node.name"
       :path="path"
     />
