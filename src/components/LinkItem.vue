@@ -5,7 +5,7 @@
     @click="setSelectedPath(path)"
   >
     <icon-container>
-      <font-awesome-icon icon="link" size="md" />
+      <font-awesome-icon icon="link" />
     </icon-container>
     {{ name }}
   </div>
