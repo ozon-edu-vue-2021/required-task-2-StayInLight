@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <directory-item
+      :node="treeData"
+      :path="treeData.name"
+    />
+    <app-path :path="selectedPath"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import treeData from '../public/static/node_modules.json';
+import AppPath from './components/AppPath.vue';
+import DirectoryItem from './components/DirectoryItem.vue';
 
 export default {
   name: 'App',
+  provide() {
+    return {
+      getSelectedPath: this.getSelectedPath,
+      setSelectedPath: this.setSelectedPath,
+    };
+  },
+  data() {
+    return {
+      treeData,
+      selectedPath: '',
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    DirectoryItem,
+    AppPath,
+  },
+  methods: {
+    setSelectedPath(newSelectedPath) {
+      let pathToSet = '';
+      if (this.selectedPath !== newSelectedPath) {
+        pathToSet = newSelectedPath;
+      }
+      this.selectedPath = pathToSet;
+    },
+    getSelectedPath() {
+      return this.selectedPath;
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  max-width: 1200px;
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border: 1px solid #2c3e50;
+  border-radius: 6px;
+  padding: 8px;
 }
 </style>

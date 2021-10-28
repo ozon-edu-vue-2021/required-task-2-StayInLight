@@ -1,0 +1,15 @@
+.node__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  gap: 8px;
+  max-width: fit-content;
+}
+
+.selected {
+  background-color: lightblue;
+  border-radius: 3px;
+  padding-right: 4px;
+}
